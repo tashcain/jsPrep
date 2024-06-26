@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let totalCircle = 0;
+    let circleCoords = [];
+    document.addEventListener('click', (e) => {
+      totalCircle++;
+      let radius = 100;
+      if(totalCircle > 2){
+        let circles = document.querySelectorAll('.circle');
+        for(let c of circles){
+          document.body.removeChild(c);
+        }
+        totalCircle = 0;
+        circleCoords = [];
+      }else{
+        let x = e.clientX;
+        let y = e.clientY;
+        let circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.style.height = radius + "px";
+        circle.style.width = radius + "px";
+        circle.style.border = '2px red solid';
+        circle.style.borderRadius = '50%';
+        circle.style.position = 'fixed';
+        circle.style.top = (y - 50) + "px";
+        circle.style.left = (x - 50) + "px";
+        document.body.appendChild(circle);
+        circleCoords.push({x,y});
+      }
+
+      if(totalCircle == 2){
+        let x1 = circleCoords[0].x;
+        let x2 = circleCoords[1].x;
+        let y1 = circleCoords[0].y;
+        let y2 = circleCoords[1].y;
+        let disBet = Math.hypot(x2-x1, y2-y1)
+        
+        console.log("shubh", radius, disBet);
+        if(radius > disBet){
+          console.log("intersecting");
+        }
+      }
+
+    })
+    
+  </script>
+</body>
+</html>

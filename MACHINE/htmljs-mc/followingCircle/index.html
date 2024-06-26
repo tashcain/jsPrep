@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        console.log("shubh");
+        let radius = 100;
+        document.addEventListener('mousemove', (e) => {
+            let timer;
+            let x = e.clientX;
+            let y = e.clientY;
+            let circle = document.createElement('div');
+            circle.classList.add('circle');
+            circle.style.height = radius + "px";
+            circle.style.width = radius + "px";
+            circle.style.border = '2px red solid';
+            circle.style.borderRadius = '50%';
+            circle.style.position = 'fixed';
+            circle.style.top = (y - 50) + "px";
+            circle.style.left = (x - 50) + "px";
+            document.body.appendChild(circle);
+            circle.style.opacity = '0.5';
+            timer = setTimeout(() => {
+                document.body.removeChild(circle);
+            }, 700)
+        })
+    </script>
+</body>
+</html>
